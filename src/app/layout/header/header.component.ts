@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AUTH_MENU, NON_AUTH_MENU } from 'src/app/shared/constants';
+import { RandomImageService } from 'src/app/shared/services/image.service';
 import { AuthStore } from 'src/app/shared/store';
 
 @Component({
@@ -26,4 +27,5 @@ export class HeaderComponent {
     }
   });
   readonly currentUser = this.#authStore.selectors.user;
+  constructor(public randomImageService: RandomImageService) {}
 }
