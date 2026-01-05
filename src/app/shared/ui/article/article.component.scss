@@ -1,3 +1,102 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+.article-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.article-meta .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0; 
+}
+
+.article-meta .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-meta .author {
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+}
+
+.article-meta .date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.article-meta button {
+  margin-left: auto;  
+  flex-shrink: 0;
+}
+
+
+.preview-link {
+  display: block; 
+  text-decoration: none;
+  color: inherit;
+}
+
+.preview-link .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.preview-link .description {
+  font-size: 1rem;
+  margin: 0.25rem 0 0.5rem 0;
+  color: #555;
+}
+
+
+.preview-link .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.preview-link .tags {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.tag-default {
+  background-color: #eee;
+  color: #555;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.article-preview, .article-meta, .preview-link, .footer, .tags {
+  min-width: 0; 
+}
+
 .article-preview {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0;

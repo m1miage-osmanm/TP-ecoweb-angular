@@ -1,8 +1,30 @@
 @import "styles/font";
 @import "styles/color";
-body {
-  font-family: var(--font-source-sans);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header {
+  background-color: green;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 
 .form-control:focus {
   box-shadow: none;
