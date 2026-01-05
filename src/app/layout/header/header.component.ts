@@ -27,5 +27,5 @@ export class HeaderComponent {
     }
   });
   readonly currentUser = this.#authStore.selectors.user;
-  constructor(public randomImageService: RandomImageService) {}
+
 }
