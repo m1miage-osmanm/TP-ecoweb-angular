@@ -1,6 +1,25 @@
 <div class="setting">
   <h1>Your Settings</h1>
 
+  <!-- ---------------- Carrousel Vidéo ---------------- -->
+  <div class="video-carousel">
+    <video
+      [src]="currentVideo"
+      class="video-display"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+
+    <!-- Contrôles manuels -->
+    <div class="video-controls">
+      <button type="button" (click)="prevVideo()">Prev</button>
+      <button type="button" (click)="nextVideo()">Next</button>
+    </div>
+  </div>
+
+  <!-- ---------------- Formulaire utilisateur ---------------- -->
   <form [formGroup]="settingForm" (ngSubmit)="submit()" class="setting-form">
     <input
       type="text"
