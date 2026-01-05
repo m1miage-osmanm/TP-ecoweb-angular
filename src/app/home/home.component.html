@@ -1,7 +1,26 @@
 <div class="banner" *ngIf="!isAuthenticated()">
   <h1 class="title">conduit</h1>
   <p class="description">A place to share your knowledge</p>
+
+  <div class="heavy-rotator">
+    <img
+      class="heavy-rotator__img"
+      [src]="currentImageSrc"
+      alt="Heavy rotating image"
+      (load)="onRotatorImageLoaded()"
+      style="width: 220px; height: auto;"
+    />
+
+    <div class="heavy-rotator__meta">
+
+      <div class="heavy-rotator__loading" *ngIf="isRotatorLoading">
+        <span class="spinner"></span>
+        <span>Loading…</span>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div
   class="news-feed row"
   [style.marginTop]="!isAuthenticated() ? '232px' : ''"

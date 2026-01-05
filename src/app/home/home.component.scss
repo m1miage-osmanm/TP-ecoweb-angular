@@ -7,6 +7,7 @@
   width: 100%;
   left: 0;
   top: 58px;
+
   .title {
     font-family: var(--font-titillium);
     font-size: 3.5rem;
@@ -16,5 +17,62 @@
   .description {
     font-size: 1.5rem;
     font-weight: 300 !important;
+  }
+
+  .heavy-rotator {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .heavy-rotator__img {
+    border-radius: 6px;
+    animation: wobble 1.2s infinite ease-in-out;
+  }
+
+  .heavy-rotator__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .heavy-rotator__loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .spinner {
+    width: 14px;
+    height: 14px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    border-top-color: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.02);
+    filter: blur(0.6px);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
   }
 }
