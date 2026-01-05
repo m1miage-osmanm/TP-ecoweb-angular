@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, switchMap} from 'rxjs';
 import {
   Article,
   ArticleAPIResponse,
@@ -74,25 +74,39 @@ export class ArticleService {
   }
 
   getArticleDetail(slug: string): Observable<ArticleAPIResponse> {
-    return this.#httpClient.get<ArticleAPIResponse>(`/articles/${slug}`);
+    const url1 = `/articles/${slug}?t=${Date.now()}`;
+    const url2 = `/articles/${slug}?t=${Date.now()}`;
+
+    // 2 requêtes au lieu d’1 (la 1ère est “inutile”)
+    return this.#httpClient.get<ArticleAPIResponse>(url1).pipe(
+      switchMap(() => this.#httpClient.get<ArticleAPIResponse>(url2))
+    );
   }
 
   getFeed(request: PagingQueryParams): Observable<ArticlePagingAPIResponse> {
+    // anti-cache + duplication
     return this.#httpClient.get<ArticlePagingAPIResponse>('/articles/feed', {
-      params: {
-        ...request,
-      },
-    });
+      params: { ...request, t: Date.now().toString() },
+    }).pipe(
+      switchMap(() =>
+        this.#httpClient.get<ArticlePagingAPIResponse>('/articles/feed', {
+          params: { ...request, t: Date.now().toString() },
+        })
+      )
+    );
   }
 
-  getArticleGlobal(
-    request: ArticleGlobalQueryParams
-  ): Observable<ArticlePagingAPIResponse> {
+  getArticleGlobal(request: any): Observable<ArticlePagingAPIResponse> {
+    // anti-cache + duplication
     return this.#httpClient.get<ArticlePagingAPIResponse>('/articles', {
-      params: {
-        ...request,
-      },
-    });
+      params: { ...request, t: Date.now().toString() },
+    }).pipe(
+      switchMap(() =>
+        this.#httpClient.get<ArticlePagingAPIResponse>('/articles', {
+          params: { ...request, t: Date.now().toString() },
+        })
+      )
+    );
   }
 
   favoriteArticle(slug: string): Observable<ArticlePagingAPIResponse> {
